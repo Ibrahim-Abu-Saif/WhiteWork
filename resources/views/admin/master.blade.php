@@ -22,11 +22,10 @@
     @yield('css')
 </head>
 
-<body id="page-top">
+{{-- <body id="page-top"> --}}
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
 
 
         @include('admin._slider')
@@ -202,7 +201,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; {{ env('APP_NAME') }} 2022- {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
@@ -252,3 +251,4 @@
 </body>
 
 </html>
+
