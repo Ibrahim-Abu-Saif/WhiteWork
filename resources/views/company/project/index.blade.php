@@ -37,7 +37,7 @@ table span{
                         <td>{{ $loop->iteration }}</td>
                         <td><img width="80px" src="{{ asset('img/' . $project->image) }}" alt="Project Image"></td>
                         <td>{{ $project->name }}</td>
-                        <td>{{ $project->price }}</td>
+                        <td>{{ $project->price }}$</td>
                         <td>{{ $project->duration }}</td>
                         <td>{!! $project->status
                             ? '<span onclick="edit_status(event,' . $project->id . ')" class=" status badge badge-success text-white">Open</span>'
@@ -72,7 +72,6 @@ table span{
                 @endforelse
             </table>
             {{ $projects->links() }}
-
         </div>
     </div>
 
@@ -98,7 +97,7 @@ table span{
             }
         })
 
-        @if (session('msg'))
+        @if(session('msg'))
             Toast.fire({
                 icon: '{{ session('type') }}',
                 title: '{{ session('msg') }}'

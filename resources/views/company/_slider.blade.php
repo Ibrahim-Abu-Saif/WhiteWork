@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon ">
             <i class="fas fa-laptop"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">My Company</div>
+        <div class="sidebar-brand-text mx-3">{{Auth::guard('company')->user()->name}}</div>
     </a>
 
     <!-- Divider -->

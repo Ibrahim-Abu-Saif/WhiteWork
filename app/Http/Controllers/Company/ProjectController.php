@@ -113,7 +113,6 @@ class ProjectController extends Controller
 
 
         $project->update($data);
-
         $project->skills()->sync($request->skills);
 
 
@@ -131,10 +130,9 @@ class ProjectController extends Controller
         File::delete(public_path('img/'.$project->image));
         $project->delete();
 
-        return redirect()
-        ->route('company.projects.index')
-        ->with('msg','Project Edit Successfully')
-        ->with('type','success');
+        return'Done';
+
+
 
     }
 

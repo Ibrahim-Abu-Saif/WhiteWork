@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Company extends Authenticatable  implements MustVerifyEmail
 {
     use HasFactory,Notifiable;
+    protected $guarded=[''];
 
     function employees() {
         return $this->hasMany(User::class);
@@ -37,4 +38,6 @@ class Company extends Authenticatable  implements MustVerifyEmail
         }
         return $src;
     }
+
+
 }
