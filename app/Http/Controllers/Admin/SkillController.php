@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\skill;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class skillController extends Controller
 {
@@ -13,6 +14,7 @@ class skillController extends Controller
      */
     public function index()
     {
+        Gate::authorize('all_skills');
         $skills=skill::latest('id')->paginate(10);
         return view('admin.skill.index',compact('skills'));
     }
@@ -22,6 +24,7 @@ class skillController extends Controller
      */
     public function create()
     {
+        Gate::authorize('crate_skill');
         return view('admin.skill.create');
     }
 
@@ -58,6 +61,7 @@ class skillController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('edit_skill');
         $skill=skill::findOrFail($id);
         // dd($skill);
         return view('admin.skill.edit',compact('skill'));
@@ -89,6 +93,7 @@ class skillController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('delete_skill');
         $skill=skill::findOrFail($id);
         $skill->delete();
 

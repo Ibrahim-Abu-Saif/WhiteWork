@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    protected $guarded=[''];
 
     function company() {
         return $this->belongsTo(Company::class)->withDefault();

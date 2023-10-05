@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
@@ -16,9 +17,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects=Project::with('skills','category')->where('company_id',1)
-        ->latest('id')->paginate(10);
-        return view('company.project.index',compact('projects'));
+        $projects=Project::with('skills','category','payment')->where('company_id',Auth::id())
+        ->latest('id')->paginate(5);
+        $categories=Category::select('id','name')->get();
+        $skills=Skill::select('id','name')->get();
+        return view('company.project.index',compact('projects','categories','skills'));
     }
 
     /**
@@ -52,11 +55,17 @@ class ProjectController extends Controller
 
         $data=$request->except('_token','image','skills');
         $data['image']=$img_name;
-        $data['company_id']=1;
+        $data['company_id']=Auth::id();
 
         $project=Project::create($data);
 
         $project->skills()->sync($request->skills);
+
+        $projects=Project::with('skills','category')->where('company_id',Auth::id())
+        ->latest('id')->paginate(5);
+        if($request->has('fromIndex')){
+         return view('company.project._table',compact('projects'))->render() ;
+        }
 
 
         return redirect()

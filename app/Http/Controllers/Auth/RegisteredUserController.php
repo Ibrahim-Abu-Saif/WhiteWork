@@ -42,14 +42,15 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ];
-        if($request->guard=='admin'){
-            $user = Admin::create($data);
-        }
+
         if($request->guard =='company'){
             $user = Company::create($data);
         }
-        if($request->guard =='web'){
+        elseif($request->guard =='web'){
             $user = User::create($data);
+        }
+        else{
+            $user = Admin::create($data);
         }
 
 

@@ -22,14 +22,19 @@
                 <td>{{ $skill->name }}</td>
                 <td style="width: 25%">{{ $skill->created_at->format('M d,Y : h:i:s a') }}</td>
                 <td style="width: 11%">
+                @can('edit_skill')
                     <a class="btn btn-info btn-sm" href="{{ route('admin.skills.edit', $skill->id) }}"><i
                             class="fas fa-edit"></i></a>
+                @endcan
+
+                @can('delete_skill')
                     <form class="d-inline" action="{{ route('admin.skills.destroy', $skill->id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-sm" onclick="delete_js(event)"><i
                                 class="fas fa-trash"></i></button>
                     </form>
+                @endcan
                 </td>
             </tr>
 

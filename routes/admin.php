@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -10,6 +11,7 @@ Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function
     Route::get('dashboard',[AdminController::class,'dashboard'])->name('dashboard');
     Route::resource('Category',CategoryController::class);
     Route::resource('skills',SkillController::class);
+    Route::resource('roles',RoleController::class);
 });
 
 

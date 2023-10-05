@@ -1,6 +1,6 @@
 
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    
+
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
@@ -35,11 +35,18 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                @can('all_categories')
+
                 <a class="collapse-item" href="{{route('admin.Category.index')}}">All Categories</a>
+                @endcan
+                @can('crate_category')
+
                 <a class="collapse-item" href="{{route('admin.Category.create')}}">Add new</a>
+                @endcan
             </div>
         </div>
     </li>
+
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSkill"
@@ -49,8 +56,29 @@
         </a>
         <div id="collapseSkill" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{route('admin.skills.index')}}">All Skills</a>
-                <a class="collapse-item" href="{{route('admin.skills.create')}}">Add new</a>
+                @can('all_skills')
+                  <a class="collapse-item" href="{{route('admin.skills.index')}}">All Skills</a>
+                @endcan
+                @can('create_skill')
+                  <a class="collapse-item" href="{{route('admin.skills.create')}}">Add new</a>
+                @endcan
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRole"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-lock"></i>
+            <span>Roles</span>
+        </a>
+
+
+
+        <div id="collapseRole" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('admin.roles.index')}}">All Roles</a>
+                <a class="collapse-item" href="{{route('admin.roles.create')}}">Add new</a>
             </div>
         </div>
     </li>

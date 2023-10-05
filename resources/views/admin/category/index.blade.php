@@ -22,14 +22,19 @@
                 <td>{{ $category->name }}</td>
                 <td style="width: 25%">{{ $category->created_at->format('M d,Y : h:i:s a') }}</td>
                 <td style="width: 11%">
+                @can('edite_category')
                     <a class="btn btn-info btn-sm" href="{{ route('admin.Category.edit', $category->id) }}"><i
                             class="fas fa-edit"></i></a>
+                @endcan
+                
+                @can('delete_category')
                     <form class="d-inline" action="{{ route('admin.Category.destroy', $category->id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-sm" onclick="delete_js(event)"><i
                                 class="fas fa-trash"></i></button>
                     </form>
+                @endcan
                 </td>
             </tr>
 

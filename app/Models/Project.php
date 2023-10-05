@@ -36,6 +36,11 @@ class Project extends Model
         return $this->hasOne(UserProject::class)->withDefault();
     }
 
+    function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
 
     protected static function booted(): void
     {
